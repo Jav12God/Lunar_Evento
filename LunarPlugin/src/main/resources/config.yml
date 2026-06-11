@@ -1,0 +1,130 @@
+# =====================================================================
+# LUNAR — MOTOR DE TERROR PSICOLÓGICO
+# Paper 1.21.x | Java 21 | by Javi
+# =====================================================================
+#
+# Todos los intervalos de tiempo están en SEGUNDOS.
+# El daño se configura en CORAZONES (el plugin lo convierte a HP internamente).
+
+# ─────────────────────────────────────────────
+# CICLO
+# ─────────────────────────────────────────────
+cycle:
+  # Cuántas noches de Minecraft deben pasar para que se active el evento
+  days-per-cycle: 4
+  # Duración del evento en segundos (600 = 10 minutos)
+  event-duration-seconds: 600
+
+# ─────────────────────────────────────────────
+# MUNDOS DONDE OPERA EL EVENTO
+# ─────────────────────────────────────────────
+# Añadir o quitar mundos según la configuración de Multiverse-Core
+allowed-worlds:
+  - "world"
+  - "world_nether"
+# Para incluir el End: añadir "world_the_end" si está activo en Multiverse
+
+# ─────────────────────────────────────────────
+# EFECTOS DE POCIÓN
+# ─────────────────────────────────────────────
+effects:
+  blindness:
+    enabled: true
+    amplifier: 0   # 0 = nivel I (el más suave)
+  darkness:
+    enabled: true
+    amplifier: 0   # 0 = nivel I
+
+# ─────────────────────────────────────────────
+# SONIDOS ATMOSFÉRICOS
+# ─────────────────────────────────────────────
+sounds:
+  enabled: true
+  # Intervalo aleatorio entre sonidos para cada jugador (segundos)
+  min-interval-seconds: 15
+  max-interval-seconds: 45
+  # Catálogo de sonidos vanilla a reproducir
+  # Los intervalos se acortan automáticamente en ciclos avanzados
+  categories:
+    - "entity.warden.heartbeat"
+    - "entity.warden.ambient"
+    - "entity.warden.listening"
+    - "entity.warden.listening_angry"
+    - "block.sculk_shrieker.shriek"
+    - "ambient.cave"
+    - "entity.player.breath"
+    - "entity.warden.roar"
+
+# ─────────────────────────────────────────────
+# MENSAJES PSICOLÓGICOS
+# ─────────────────────────────────────────────
+# Soportan formato MiniMessage: <red>, <dark_red>, <gray>, etc.
+spooky-messages:
+  enabled: true
+  min-interval-seconds: 30
+  max-interval-seconds: 90
+  pool:
+    - "<red>Algo conoce tu nombre.</red>"
+    - "<red>No estás solo.</red>"
+    - "<red>Corre.</red>"
+    - "<gray>Escuchas pasos detrás de ti.</gray>"
+    - "<red>La luna te observa.</red>"
+    - "<dark_gray>Las sombras se acercan.</dark_gray>"
+    - "<red>Ya están aquí.</red>"
+    - "<dark_red>Ellos pueden verte.</dark_red>"
+    - "<gray>¿Escuchaste eso?</gray>"
+    - "<dark_red>No te muevas.</dark_red>"
+    - "<red>Hay algo detrás de ti.</red>"
+    - "<gray>El frío aumenta.</gray>"
+    - "<dark_red>No estés solo en la oscuridad.</dark_red>"
+
+# ─────────────────────────────────────────────
+# DAÑO PSICOLÓGICO
+# ─────────────────────────────────────────────
+psychological-damage:
+  enabled: true
+  # Intervalo aleatorio entre intentos de daño (segundos)
+  min-interval-seconds: 60
+  max-interval-seconds: 180
+  # Daño en CORAZONES (1.0 = medio corazón de vida perdido)
+  min-damage-hearts: 1.0
+  max-damage-hearts: 3.0
+  messages:
+    - "<red>Algo te arañó desde las sombras.</red>"
+    - "<red>Sentiste una presencia helada traversarte.</red>"
+    - "<dark_red>La oscuridad te tocó.</dark_red>"
+    - "<red>Un dolor inexplicable recorre tu cuerpo.</red>"
+  sounds:
+    - "entity.player.hurt"
+    - "entity.warden.attack_impact"
+
+# ─────────────────────────────────────────────
+# LA PRESENCIA
+# ─────────────────────────────────────────────
+presence:
+  enabled: true
+  # Intervalo entre apariciones para cada jugador (segundos)
+  min-interval-seconds: 90
+  max-interval-seconds: 240
+  # Tiempo que La Presencia permanece antes de desaparecer (segundos)
+  despawn-delay-min-seconds: 3
+  despawn-delay-max-seconds: 10
+  # Tipo de entidad base (WITHER_SKELETON recomendado)
+  entity-type: WITHER_SKELETON
+  # Si La Presencia brilla (visible a través de paredes)
+  glowing: true
+  # Si La Presencia es invisible (solo su contorno si glowing=true)
+  invisible: true
+  # NOTA: en ciclos >= 3, La Presencia activa su IA y puede atacar
+
+# ─────────────────────────────────────────────
+# MODIFICADORES DE MOBS
+# ─────────────────────────────────────────────
+# Estos valores se suman ENCIMA de lo que ya dan LevelledMobs e InfernalMobsPlus
+# Los modificadores se identifican por keys únicos "lunar_*" para no interferir
+mob-modifiers:
+  enabled: true
+  # Multiplicadores base (escalados por ciclo: +10% por ciclo)
+  health-multiplier: 1.50   # +50% vida
+  damage-multiplier: 1.30   # +30% daño
+  speed-multiplier: 1.20    # +20% velocidad

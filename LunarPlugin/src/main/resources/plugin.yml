@@ -1,0 +1,19 @@
+name: Lunar
+version: 1.0.0
+main: com.lunar.LunarPlugin
+api-version: '1.21'
+
+author: Javi
+description: Motor de terror psicológico lunar para Paper 1.21.x
+
+commands:
+  lunar:
+    description: Control del sistema Lunar
+    usage: /lunar [start|stop|status|reload|forcecycle]
+    permission: lunar.admin
+    aliases: [ln]
+
+permissions:
+  lunar.admin:
+    description: Permite administrar el evento Lunar
+    default: op
